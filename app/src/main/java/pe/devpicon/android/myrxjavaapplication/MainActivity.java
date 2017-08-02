@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -18,7 +20,7 @@ import rx.subscriptions.CompositeSubscription;
 public class MainActivity extends AppCompatActivity {
 
     @NonNull
-    private final CompositeSubscription suscription = new CompositeSubscription();
+    private CompositeSubscription suscription;
 
     @NonNull
     private MainViewModel mViewModel;
@@ -28,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Nullable
     private Spinner languageSpinner;
+
+    @Nullable
+    private LanguageSpinnerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bind() {
+        suscription = new CompositeSubscription();
+
         suscription.add(mViewModel.getGreeting()
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -79,7 +86,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void setLanguages(@NonNull final List<Language> languages){
         assert this.languageSpinner != null;
-        LanguageSpinnerAdapter adapter = new LanguageSpinnerAdapter(this, R.layout.language_item, languages);
+        adapter = new LanguageSpinnerAdapter(this, R.layout.language_item, languages);
         languageSpinner.setAdapter(adapter);
+        languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Language selectedLanguage = adapter.getItem(position);
+                mViewModel.selectedLanguage(selectedLanguage);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 }
