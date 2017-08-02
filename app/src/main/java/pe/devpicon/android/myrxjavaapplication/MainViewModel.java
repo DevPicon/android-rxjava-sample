@@ -3,6 +3,9 @@ package pe.devpicon.android.myrxjavaapplication;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import pe.devpicon.android.myrxjavaapplication.datamodel.DataModel;
+import pe.devpicon.android.myrxjavaapplication.datamodel.IDataModel;
+
 /**
  * Created by armando on 8/2/17.
  */

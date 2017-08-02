@@ -1,4 +1,4 @@
-package pe.devpicon.android.myrxjavaapplication;
+package pe.devpicon.android.myrxjavaapplication.datamodel;
 
 /**
  * Created by armando on 8/2/17.
