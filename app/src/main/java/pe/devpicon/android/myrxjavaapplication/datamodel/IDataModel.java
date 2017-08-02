@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import pe.devpicon.android.myrxjavaapplication.Language;
+import pe.devpicon.android.myrxjavaapplication.model.Language;
 import rx.Observable;
 
 /**

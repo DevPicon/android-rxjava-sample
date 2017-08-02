@@ -1,4 +1,4 @@
-package pe.devpicon.android.myrxjavaapplication;
+package pe.devpicon.android.myrxjavaapplication.model;
 
 import android.support.annotation.NonNull;
 

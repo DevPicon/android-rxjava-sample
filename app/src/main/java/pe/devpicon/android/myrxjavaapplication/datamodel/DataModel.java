@@ -5,13 +5,13 @@ import android.support.annotation.NonNull;
 import java.util.Arrays;
 import java.util.List;
 
-import pe.devpicon.android.myrxjavaapplication.Language;
+import pe.devpicon.android.myrxjavaapplication.model.Language;
 import rx.Observable;
 
-import static pe.devpicon.android.myrxjavaapplication.Language.LanguageCode.DE;
-import static pe.devpicon.android.myrxjavaapplication.Language.LanguageCode.EN;
-import static pe.devpicon.android.myrxjavaapplication.Language.LanguageCode.ES;
-import static pe.devpicon.android.myrxjavaapplication.Language.LanguageCode.FR;
+import static pe.devpicon.android.myrxjavaapplication.model.Language.LanguageCode.DE;
+import static pe.devpicon.android.myrxjavaapplication.model.Language.LanguageCode.EN;
+import static pe.devpicon.android.myrxjavaapplication.model.Language.LanguageCode.ES;
+import static pe.devpicon.android.myrxjavaapplication.model.Language.LanguageCode.FR;
 
 /**
  * Created by armando on 8/2/17.
