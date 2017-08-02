@@ -17,6 +17,7 @@ public class DataModel implements IDataModel {
     @NonNull
     private static IDataModel mInstance;
 
+    @NonNull
     public static IDataModel getInstance(){
         if(mInstance == null){
             mInstance = new DataModel();

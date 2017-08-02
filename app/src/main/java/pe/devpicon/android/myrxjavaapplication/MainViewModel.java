@@ -3,6 +3,8 @@ package pe.devpicon.android.myrxjavaapplication;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import java.util.List;
+
 import pe.devpicon.android.myrxjavaapplication.datamodel.DataModel;
 import pe.devpicon.android.myrxjavaapplication.datamodel.IDataModel;
 import rx.Observable;
@@ -33,5 +35,15 @@ public class MainViewModel {
     @NonNull
     public Observable<String> getGreeting(){
         return mDataModel.getGreetingStream();
+    }
+
+    @NonNull
+    public Observable<List<String>> getSupportedLanguages(){
+        return mDataModel.getSupportedLanguages()
+                .map(languages -> Observable.from(languages)
+                        .map(Language::getName)
+                        .toList()
+                        .toBlocking()
+                        .single());
     }
 }
