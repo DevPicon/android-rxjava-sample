@@ -1,10 +1,9 @@
 package pe.devpicon.android.myrxjavaapplication;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -78,10 +77,9 @@ public class MainActivity extends AppCompatActivity {
         this.mGreetingView.setText(greeting);
     }
 
-    private void setLanguages(@NonNull final List<String> languages){
+    private void setLanguages(@NonNull final List<Language> languages){
         assert this.languageSpinner != null;
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.language_item, languages);
-        adapter.setDropDownViewResource(R.layout.language_item);
+        LanguageSpinnerAdapter adapter = new LanguageSpinnerAdapter(this, R.layout.language_item, languages);
         languageSpinner.setAdapter(adapter);
     }
 }
