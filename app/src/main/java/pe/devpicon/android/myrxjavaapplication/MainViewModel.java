@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import pe.devpicon.android.myrxjavaapplication.datamodel.DataModel;
 import pe.devpicon.android.myrxjavaapplication.datamodel.IDataModel;
+import rx.Observable;
 
 /**
  * Created by armando on 8/2/17.
@@ -29,7 +30,8 @@ public class MainViewModel {
         this.mDataModel = DataModel.getInstance();
     }
 
-    public String getGreeting(){
-        return mDataModel.getGreeting();
+    @NonNull
+    public Observable<String> getGreeting(){
+        return mDataModel.getGreetingStream();
     }
 }

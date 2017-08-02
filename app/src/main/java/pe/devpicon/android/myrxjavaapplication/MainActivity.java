@@ -6,7 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import rx.subscriptions.CompositeSubscription;
+
 public class MainActivity extends AppCompatActivity {
+
+    @NonNull
+    private final CompositeSubscription suscription = new CompositeSubscription();
 
     @NonNull
     private MainViewModel mViewModel = MainViewModel.getInstance();
@@ -28,8 +33,18 @@ public class MainActivity extends AppCompatActivity {
         bind();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unBind();
+    }
+
+    private void unBind() {
+        suscription.unsubscribe();
+    }
+
     private void bind() {
-        setGreeting(mViewModel.getGreeting());
+        suscription.add(mViewModel.getGreeting().subscribe(this::setGreeting));
     }
 
     public void setGreeting(@NonNull final String greeting) {
