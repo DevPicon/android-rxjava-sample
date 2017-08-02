@@ -8,6 +8,11 @@ import java.util.List;
 import pe.devpicon.android.myrxjavaapplication.Language;
 import rx.Observable;
 
+import static pe.devpicon.android.myrxjavaapplication.Language.LanguageCode.DE;
+import static pe.devpicon.android.myrxjavaapplication.Language.LanguageCode.EN;
+import static pe.devpicon.android.myrxjavaapplication.Language.LanguageCode.ES;
+import static pe.devpicon.android.myrxjavaapplication.Language.LanguageCode.FR;
+
 /**
  * Created by armando on 8/2/17.
  */
@@ -15,27 +20,13 @@ import rx.Observable;
 public class DataModel implements IDataModel {
 
     @NonNull
-    private static IDataModel mInstance;
-
-    @NonNull
-    public static IDataModel getInstance(){
-        if(mInstance == null){
-            mInstance = new DataModel();
-        }
-        return mInstance;
-    }
-
-    private DataModel() {
-    }
-
-
-    @NonNull
     @Override
     public Observable<List<Language>> getSupportedLanguages() {
         List<Language> languages = Arrays.asList(
-                                new Language("English", "EN"),
-                                new Language("Spanish", "ES"),
-                                new Language("German", "DE")
+                                new Language("English", EN),
+                                new Language("Spanish", ES),
+                                new Language("French", FR),
+                                new Language("German", DE)
         );
         return Observable.just(languages);
     }
@@ -45,4 +36,23 @@ public class DataModel implements IDataModel {
     public Observable<String> getGreetingStream() {
         return Observable.just("Hello there");
     }
+
+    @NonNull
+    @Override
+    public Observable<String> getGreetingByLanguage(Language.LanguageCode code) {
+        switch (code){
+            case DE:
+                return Observable.just("Guten Tag!");
+            case EN:
+                return Observable.just("Hello!");
+            case FR:
+                return Observable.just("Bonjour!");
+            case ES:
+                return Observable.just("Hola!");
+            default:
+                return Observable.never();
+        }
+    }
+
+
 }
