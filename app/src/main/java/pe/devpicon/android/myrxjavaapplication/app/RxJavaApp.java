@@ -13,15 +13,10 @@ import pe.devpicon.android.myrxjavaapplication.datamodel.IDataModel;
 public class RxJavaApp extends Application {
 
     @NonNull
-    private IDataModel dataModel;
+    private final IDataModel dataModel;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        initInstance();
-    }
 
-    private void initInstance() {
+    public RxJavaApp() {
         dataModel = new DataModel();
     }
 

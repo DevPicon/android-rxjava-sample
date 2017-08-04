@@ -52,7 +52,7 @@ public class MainViewModelTest {
         mainViewModel.getGreeting().subscribe(testSubscriber);
 
         testSubscriber.assertNoErrors();
-        testSubscriber.assertValueCount(0);
+        testSubscriber.assertNoValues();
     }
 
     @Test

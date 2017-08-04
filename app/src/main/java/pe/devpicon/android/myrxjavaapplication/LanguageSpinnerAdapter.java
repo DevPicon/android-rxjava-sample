@@ -25,21 +25,18 @@ public class LanguageSpinnerAdapter extends ArrayAdapter<Language>{
 
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return getCustomView(position, convertView, parent);
+        return getCustomView(position, convertView);
     }
 
-    private View getCustomView(int position, View convertView, ViewGroup parent) {
+    private View getCustomView(int position, View convertView) {
 
         ViewHolder holder;
         View view = convertView;
 
         if(view == null){
-            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.language_item, null);
-
-            holder = new ViewHolder();
-            holder.textView = (TextView) view.findViewById(android.R.id.text1);
-
+            view = inflateView();
+            TextView textView = (TextView) view.findViewById(android.R.id.text1);
+            holder = new ViewHolder(textView);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
@@ -51,14 +48,25 @@ public class LanguageSpinnerAdapter extends ArrayAdapter<Language>{
         return view;
     }
 
+    private View inflateView() {
+        View view;LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        view = inflater.inflate(R.layout.language_item, null);
+        return view;
+    }
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return getCustomView(position, convertView, parent);
+        return getCustomView(position, convertView);
     }
 
     private class ViewHolder{
+        @NonNull
         private TextView textView;
+
+        public ViewHolder(@NonNull final TextView textView) {
+            this.textView = textView;
+        }
 
         public void bind(@NonNull final String text){
             textView.setText(text);
