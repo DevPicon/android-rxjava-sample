@@ -46,7 +46,7 @@ public class LanguageSpinnerAdapter extends ArrayAdapter<Language>{
         }
 
         Language language = getItem(position);
-        holder.textView.setText(language.getName());
+        holder.bind(language.getName());
 
         return view;
     }
@@ -58,9 +58,10 @@ public class LanguageSpinnerAdapter extends ArrayAdapter<Language>{
     }
 
     private class ViewHolder{
-        TextView textView;
+        private TextView textView;
 
-        public ViewHolder() {
+        public void bind(@NonNull final String text){
+            textView.setText(text);
         }
 
     }

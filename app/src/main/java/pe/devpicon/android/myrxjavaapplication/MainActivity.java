@@ -41,9 +41,30 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mViewModel = new MainViewModel(getDataModel());
+        setupViews();
+    }
 
+    private void setupViews() {
         mGreetingView = (TextView) findViewById(R.id.greeting);
         languageSpinner = (Spinner)findViewById(R.id.languages);
+        assert languageSpinner != null;
+        languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                itemSelected(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void itemSelected(int position) {
+        assert adapter != null;
+        Language selectedLanguage = adapter.getItem(position);
+        mViewModel.selectedLanguage(selectedLanguage);
     }
 
     private IDataModel getDataModel() {
@@ -89,17 +110,6 @@ public class MainActivity extends AppCompatActivity {
         assert this.languageSpinner != null;
         adapter = new LanguageSpinnerAdapter(this, R.layout.language_item, languages);
         languageSpinner.setAdapter(adapter);
-        languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Language selectedLanguage = adapter.getItem(position);
-                mViewModel.selectedLanguage(selectedLanguage);
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 }

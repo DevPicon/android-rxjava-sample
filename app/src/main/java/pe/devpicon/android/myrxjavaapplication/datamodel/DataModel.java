@@ -33,12 +33,6 @@ public class DataModel implements IDataModel {
 
     @NonNull
     @Override
-    public Observable<String> getGreetingStream() {
-        return Observable.just("Hello there");
-    }
-
-    @NonNull
-    @Override
     public Observable<String> getGreetingByLanguage(Language.LanguageCode code) {
         switch (code){
             case DE:

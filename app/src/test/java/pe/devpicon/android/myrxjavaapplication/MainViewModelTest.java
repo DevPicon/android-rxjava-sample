@@ -45,4 +45,30 @@ public class MainViewModelTest {
         testSubscriber.assertNoErrors();
         testSubscriber.assertValue(languages);
     }
+
+    @Test
+    public void testGetGreeting_doesNotEmit_whenNoLanguagesSet(){
+        TestSubscriber<String> testSubscriber = new TestSubscriber<>();
+        mainViewModel.getGreeting().subscribe(testSubscriber);
+
+        testSubscriber.assertNoErrors();
+        testSubscriber.assertValueCount(0);
+    }
+
+    @Test
+    public void testGetGreeting_emitsCorrectGreeting_whenLanguageSet(){
+        String enGreeting = "Hello";
+        Language en = new Language("English", Language.LanguageCode.EN);
+        Mockito.when(dataModel.getGreetingByLanguage(Language.LanguageCode.EN))
+                .thenReturn(Observable.just(enGreeting));
+
+        TestSubscriber<String> testSubscriber = new TestSubscriber<>();
+        mainViewModel.getGreeting().subscribe(testSubscriber);
+        mainViewModel.selectedLanguage(en);
+
+        testSubscriber.assertNoErrors();
+        testSubscriber.assertValue(enGreeting);
+
+
+    }
 }
