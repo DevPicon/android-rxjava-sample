@@ -48,6 +48,7 @@ public class LanguageSpinnerAdapter extends ArrayAdapter<Language>{
         return view;
     }
 
+    @NonNull
     private View inflateView() {
         View view;LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.language_item, null);

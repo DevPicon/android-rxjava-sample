@@ -59,7 +59,7 @@ public class MainViewModelTest {
     public void testGetGreeting_emitsCorrectGreeting_whenLanguageSet(){
         String enGreeting = "Hello";
         Language en = new Language("English", Language.LanguageCode.EN);
-        Mockito.when(dataModel.getGreetingByLanguage(Language.LanguageCode.EN))
+        Mockito.when(dataModel.getGreetingByLanguageCode(Language.LanguageCode.EN))
                 .thenReturn(Observable.just(enGreeting));
 
         TestSubscriber<String> testSubscriber = new TestSubscriber<>();

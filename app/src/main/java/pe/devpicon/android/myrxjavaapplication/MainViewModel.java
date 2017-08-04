@@ -26,7 +26,7 @@ public class MainViewModel {
 
     @NonNull
     public Observable<String> getGreeting(){
-        return selectedLanguage.map(Language::getLanguageCode).flatMap(mDataModel::getGreetingByLanguage);
+        return selectedLanguage.map(Language::getLanguageCode).flatMap(mDataModel::getGreetingByLanguageCode);
     }
 
     @NonNull
